@@ -13,7 +13,7 @@ const connection = createConnection({
   host     : process.env.DB_HOST,
   user     : process.env.DB_USER,
   password : process.env.DB_PASS,
-  database: 'dbInfoWorldTour'
+  database : process.env.DB_DBNAME 
 });
  
 const port = 3000;//port de l'api
@@ -42,8 +42,18 @@ app.get('/', function(req:Request, response:Response){
 //pour recupere la date du jour 
 function getDate(){
     let d:Date = new Date();
-    let date:string = d.getDate()+"-"+(d.getMonth()+1)+"-"+d.getFullYear()+" "+d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
-   // console.log(date);
+    let date:string =   d.getDate()+
+                        "-"+
+                        (d.getMonth()+1)+
+                        "-"+
+                        d.getFullYear()+
+                        " "+
+                        d.getHours()+
+                        ":"+
+                        d.getMinutes()+
+                        ":"+
+                        d.getSeconds();
+    // console.log(date);
     return date;
 }
 
@@ -70,7 +80,7 @@ app.get('/getMessage/', function(req:Request, response:Response) {
 // POST Ajouter un nouveau train dans la db 
 app.post('/postMessage/', function(req:Request, response:Response) {
 
-    let message= {
+    let message = {
         text: req.body.text,
         user: req.body.user,
         date: getDate()

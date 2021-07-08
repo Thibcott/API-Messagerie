@@ -13,7 +13,7 @@ var connection = mysql_1.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASS,
-    database: 'dbInfoWorldTour'
+    database: process.env.DB_DBNAME
 });
 var port = 3000; //port de l'api
 //cors
@@ -36,7 +36,17 @@ app.get('/', function (req, response) {
 //pour recupere la date du jour 
 function getDate() {
     var d = new Date();
-    var date = d.getDate() + "-" + (d.getMonth() + 1) + "-" + d.getFullYear() + " " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+    var date = d.getDate() +
+        "-" +
+        (d.getMonth() + 1) +
+        "-" +
+        d.getFullYear() +
+        " " +
+        d.getHours() +
+        ":" +
+        d.getMinutes() +
+        ":" +
+        d.getSeconds();
     // console.log(date);
     return date;
 }
